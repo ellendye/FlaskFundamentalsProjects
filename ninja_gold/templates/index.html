@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="d-flex top">
+            <h4>Your Gold: </h4>
+            <h4 class="goldCount"> {{ session['gold'] }} </h4>
+            <h4>Current Number of Moves: {{ session['moves'] }}</h4>
+        </div>
+        {% if session['moves'] <= 20 and session['gold'] >=200 %}
+            <div class="d-flex top">
+                <h5>YOU WIN!!! CONGRATS!</h5>
+                <form action="/destroy_session" method="post">
+                    <input type="hidden" name="building" value="reset" />
+                    <input class = "btn btn-warning" type="submit" value="Reset Game & Play Again!"/>
+                </form>
+            </div>
+        {% elif session['moves'] >= 20 and session['gold'] <= 200%}
+        <div class="d-flex top">
+            <h5>YOU LOSE!!! Sorry</h5>
+            <form action="/destroy_session" method="post">
+                <input type="hidden" name="building" value="reset" />
+                <input class = "btn btn-warning" type="submit" value="Reset Game & Play Again!"/>
+            </form>
+        </div>
+        {% else %}
+        <h5>To win: get at least 200 gold in less than 15 moves</h5>
+        {% endif %}
+
+        <div class = "d-flex body">
+            <div class = "d-flex box">
+                <h5>Farm</h5>
+                <h6>(Earns 10-20 golds)</h6>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="farm" />
+                    <input class = "btn btn-warning" type="submit" value="Find Gold!"/>
+                </form>
+            </div>
+            <div class = "d-flex box">
+                <h5>Cave</h5>
+                <h6>(Earns 5-10 golds)</h6>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="cave" />
+                    <input class = "btn btn-warning" type="submit" value="Find Gold!"/>
+                </form>
+            </div>
+            <div class = "d-flex box">
+                <h5>House</h5>
+                <h6>(Earns 2-5 golds)</h6>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="house" />
+                    <input class = "btn btn-warning" type="submit" value="Find Gold!"/>
+                </form>
+            </div>
+            <div class = "d-flex box">
+                <h5>Casino</h5>
+                <h6>(Earns/takes 10-20 golds)</h6>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="casino" />
+                    <input class = "btn btn-warning" type="submit" value="Find Gold!"/>
+                </form>
+            </div>
+        </div>
+
+        <div class="bottom">
+            <p>Activities: </p>
+            <div class = "activities">
+                {% for activities in session['activities'][::-1] %}
+                    {% if "Earned" in activities %}
+                    <p style="color: green;">{{ activities }} </p>
+                    {% else %}
+                    <p style="color: red;">{{ activities }} </p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+
+
+        </div>
+
+    </div>
+</body>
+</html>

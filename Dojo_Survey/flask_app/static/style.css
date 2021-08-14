@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* setting for container on both pages */
+.container {
+    margin: 10px auto;
+    width: 50vw;
+    height: fit-content;
+    border: black 2px solid;
+    padding: 3em;
+}
+
+/* formatting for the form on the home page */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.form-group{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* formatting for right and left sides of form on the homepage */
+.left {
+    flex: 2;
+}
+.right {
+    flex: 2;
+}
+
+/* formatting for textbox and label above it */
+#text-box {
+    display: flex;
+    flex-direction: column;
+}
+
+/* formatting for both buttons */
+.buttonclass{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.button {
+    background-color: rgb(76, 142, 184);
+    border: black 1px solid;
+    box-shadow: black 2px 2px 2px;
+    color: white;
+    padding: .25em;
+    width: 8em;
+}
+
+
+/* additional formatting for the show page */
+
+h4{
+    text-decoration: underline;
+}
+
+.collected-info {
+    height: 25vw;
+    padding: 0 1.5em;
+}
+
+.info-collected{
+    margin:0;
+    height: 1.25em;
+}

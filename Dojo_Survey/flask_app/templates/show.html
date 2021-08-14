@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Results</title>
+</head>
+<body>
+    <!-- container for boxes -->
+    <div class="container">
+        <h4>Submitted Info</h4>
+        <div class="collected-info">
+            <div class="form-group info-collected">
+                <p class="left">Name: </p>
+                <p class="right">{{ survey_data['name'] }}</p>
+            </div><br>
+            <div class="form-group info-collected">
+                <p class="left">Dojo Location: </p>
+                <p class="right">{{ survey_data['location'] }}</p>
+            </div><br>
+            <div class="form-group info-collected">
+                <p class="left">Favorite Language: </p>
+                <p class="right">{{ survey_data['language'] }}</p>
+            </div><br>
+            <div class="form-group info-collected">
+                <p class="left">Comment: </p>
+                <p class="right">{{ survey_data['comment'] }}</p>
+            </div><br>
+            <div class="form-group info-collected">
+                <p class="left">Favorite weekened day: </p>
+                <p class="right">{{ survey_data['day'] }}</p>
+            </div><br>
+            <div class="form-group info-collected">
+                <p class="left">Favorite desserts: </p>
+                <ul class ="right">
+                {% for dessert in survey_data.getlist('dessert') %}
+                    <li class="right">{{ dessert }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <form action="/" class="form-group buttonclass">
+            <input type='submit' value='Go Back' class="button">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 0 auto;
+    padding-top: 3em;
+    flex-direction: column;
+    gap: 1em;
+}
+
+/* put this class on all divs w this setting */
+.alignflexcenter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guessbox {
+    height: 100px; 
+    width: 200px; 
+    color: white; 
+    border: 2px solid black;
+}
+
+.endingguess {
+    height: 300px;
+    width: 300px;
+    flex-direction: column;
+    text-align: center;
+    gap: 2em;
+    color: white;
+    border: 2px black solid;
+}
+
+.buttonformat{
+    flex-direction: column;
+    gap: .5em;
+}
+
+/* any div with a green or red background was assigned one of these two settings */
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}

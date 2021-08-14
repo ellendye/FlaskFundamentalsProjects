@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    <!-- container for boxes -->
+
+    <div class="container">
+        {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+            {% if messages %}                            <!-- check if there are any messages -->
+            <div class="alert alert-danger">
+                <a class="close" href="/">Click here to close message</a>
+                <ul>
+                {% for message in messages %}            <!-- loop through the messages -->
+                <li>{{message}}</li>                   <!-- display each message in a paragraph tag -->
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        {% endwith %}
+        <form action='/results/validate' method='post'>
+            <div class="form-group">
+                <label for="" class="left">Your Name: </label>
+                <input type='text' name='name' placeholder="Type your name here.." class="right">
+            </div>
+            <div class="form-group">
+                <label for="Dojo Location" class="left" >Dojo Location</label>
+                    <select name="location" id="location" class="right">
+                        <option value="">Choose your location</option>
+                        <option value="online">Online</option>
+                        <option value="chicago">Chicago</option>
+                        <option value="San Jose">San Jose</option>
+                        <option value="Seattle">Seattle</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label for="Favorite Language" class="left" >Favorite Language</label>
+                    <select name="language" id="language" class="right">
+                        <option value="">Choose your coding language</option>
+                        <option value="Python">Python</option>
+                        <option value="Javascript">Javascript</option>
+                        <option value="C#">C#</option>
+                        <option value="Mern">Mern</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label for="Favorite Day" class="left">Favorite weekened day: </label>
+                <div>
+                <input type="radio" id="firstchoice" name="day" value="Saturday">
+                <label for="firstchoice">Saturday</label>
+                <input type="radio" id="secondchoice" name="day" value="Sunday">
+                <label for="secondchoice">Sunday</label>
+                <input type="hidden" name = 'day' value = ''>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Which desserts do you like? " class="left">Which desserts do you like? </label>
+                <div class="right">
+                <input type="checkbox" id="firstchoice" name="dessert" value="Ice Cream">
+                <label for="firstchoice">Ice Cream</label>
+                <input type="checkbox" id="secondchoice" name="dessert" value="Cake">
+                <label for="secondchoice">Cake</label>
+                <input type="checkbox" id="thirdchoice" name="dessert" value="Brownies">
+                <label for="thirdchoice">Brownies</label>
+                <input type="checkbox" id="thirdchoice" name="dessert" value="None">
+                <label for="thirdchoice">None of the options</label>
+                <input type="hidden" name='dessert' value=''>
+                </div>
+            </div>
+            <div class="form-group" id="text-box">
+                <label for="comment">Comments(optional)</label>
+                <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Type your comments here.." ></textarea>
+            </div>
+            <div class="form-group buttonclass">
+                <input type='submit' value='Submit' class="button">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
